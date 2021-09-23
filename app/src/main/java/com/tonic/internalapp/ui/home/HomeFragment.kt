@@ -70,8 +70,7 @@ class HomeFragment : Fragment() {
         imageSlider.setImageList(imageList)
 
         imageSlider.startSliding(3000) // with new period
-        imageSlider.startSliding()
-        imageSlider.stopSliding()
+
 
         return root
     }
