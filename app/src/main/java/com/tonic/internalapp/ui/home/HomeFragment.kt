@@ -15,6 +15,9 @@ import com.tonic.internalapp.R
 import com.tonic.internalapp.databinding.FragmentHomeBinding
 import android.webkit.WebChromeClient
 import android.webkit.WebViewClient
+import com.denzcoskun.imageslider.ImageSlider
+import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.denzcoskun.imageslider.models.SlideModel
 
 class HomeFragment : Fragment() {
 
@@ -37,12 +40,12 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        //val textView: TextView = binding.textHome
-        //homeViewModel.text.observe(viewLifecycleOwner, Observer {
-        //    textView.text = it
-        //})
+        /*val textView: TextView = binding.textHome
+        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+            textView.text = it
+        })*/
 
-        val webView = view.findViewById<WebView>(R.id.webviewPhone)
+        /*val webView = view.findViewById<WebView>(R.id.webviewPhone)
         val webSettings = webView!!.settings
         webSettings.setSupportZoom(true)
         webSettings.loadWithOverviewMode = true
@@ -53,7 +56,23 @@ class HomeFragment : Fragment() {
         webSettings.cacheMode = WebSettings.LOAD_NO_CACHE
         webView!!.webChromeClient = MyWebChromeClient()
         webView!!.webViewClient = WebClient()
-        webView.loadUrl("https://www.google.com")
+        webView.loadUrl("https://www.google.com")*/
+        val imageList = ArrayList<SlideModel>()
+        imageList.add(SlideModel(R.drawable.shohei_ohtani_1))
+        imageList.add(SlideModel(R.drawable.shohei_ohtani_2))
+        imageList.add(SlideModel(R.drawable.shohei_ohtani_3))
+        imageList.add(SlideModel(R.drawable.shohei_ohtani_4))
+        imageList.add(SlideModel(R.drawable.shohei_ohtani_5))
+        imageList.add(SlideModel(R.drawable.shohei_ohtani_6))
+        imageList.add(SlideModel(R.drawable.shohei_ohtani_7))
+
+        val imageSlider = root.findViewById<ImageSlider>(R.id.image_slider)
+        imageSlider.setImageList(imageList)
+
+        imageSlider.startSliding(3000) // with new period
+        imageSlider.startSliding()
+        imageSlider.stopSliding()
+
         return root
     }
 
