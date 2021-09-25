@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.denzcoskun.imageslider.ImageSlider
+import com.denzcoskun.imageslider.models.SlideModel
 import com.tonic.internalapp.R
 import com.tonic.internalapp.databinding.FragmentSlideshowBinding
 
@@ -31,10 +33,25 @@ class SlideshowFragment : Fragment() {
         _binding = FragmentSlideshowBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textSlideshow
+        /*val textView: TextView = binding.textSlideshow
         slideshowViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
-        })
+        })*/
+
+        val imageList = ArrayList<SlideModel>()
+        imageList.add(SlideModel(R.drawable.shohei_ohtani_1))
+        imageList.add(SlideModel(R.drawable.shohei_ohtani_2))
+        imageList.add(SlideModel(R.drawable.shohei_ohtani_3))
+        imageList.add(SlideModel(R.drawable.shohei_ohtani_4))
+        imageList.add(SlideModel(R.drawable.shohei_ohtani_5))
+        imageList.add(SlideModel(R.drawable.shohei_ohtani_6))
+        imageList.add(SlideModel(R.drawable.shohei_ohtani_7))
+
+        val imageSlider = root.findViewById<ImageSlider>(R.id.image_slider)
+        imageSlider.setImageList(imageList)
+
+        imageSlider.startSliding(3000) // with new period
+
         return root
     }
 

@@ -40,10 +40,10 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        /*val textView: TextView = binding.textHome
+        val textView: TextView = binding.textHome
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
-        })*/
+        })
 
         /*val webView = view.findViewById<WebView>(R.id.webviewPhone)
         val webSettings = webView!!.settings
@@ -57,7 +57,7 @@ class HomeFragment : Fragment() {
         webView!!.webChromeClient = MyWebChromeClient()
         webView!!.webViewClient = WebClient()
         webView.loadUrl("https://www.google.com")*/
-        val imageList = ArrayList<SlideModel>()
+        /*val imageList = ArrayList<SlideModel>()
         imageList.add(SlideModel(R.drawable.shohei_ohtani_1))
         imageList.add(SlideModel(R.drawable.shohei_ohtani_2))
         imageList.add(SlideModel(R.drawable.shohei_ohtani_3))
@@ -70,7 +70,7 @@ class HomeFragment : Fragment() {
         imageSlider.setImageList(imageList)
 
         imageSlider.startSliding(3000) // with new period
-
+        */
 
         return root
     }

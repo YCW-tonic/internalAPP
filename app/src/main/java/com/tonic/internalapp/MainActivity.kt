@@ -37,7 +37,8 @@ import com.tonic.internalapp.ui.gallery.GalleryFragment
 import com.tonic.internalapp.ui.home.HomeFragment
 import com.tonic.internalapp.ui.slideshow.SlideshowFragment
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+//class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity() {
     private val mTAG = MainActivity::class.java.name
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
@@ -68,7 +69,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        //setContentView(R.layout.activity_main)
 
         Log.d(mTAG, "onCreate")
 
@@ -77,8 +78,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        val navView: BottomNavigationView = binding.navView
+
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
+            )
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
+
+        /*val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+
+
 
         val displayMetrics = DisplayMetrics()
 
@@ -103,12 +119,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        /*setSupportActionBar(binding.appBarMain.toolbar)
 
-        binding.appBarMain.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }*/
         //val drawerLayout: DrawerLayout = binding.drawerLayout
         //navView: NavigationView = binding.navView
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
@@ -151,24 +162,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         mDrawerToggle.syncState()
 
         navView!!.setNavigationItemSelectedListener(this)
-        //val navController = findNavController(R.id.nav_host_fragment_content_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        //appBarConfiguration = AppBarConfiguration(setOf(
-        //        R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow), drawerLayout)
-        //setupActionBarWithNavController(navController, appBarConfiguration)
-        //navView.setupWithNavController(navController)
 
-
-        /*val navViewBottom: BottomNavigationView = binding.navViewBottom
-        val navControllerBottom = findNavController(R.id.nav_host_fragment_content_main)
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
-            )
-        )
-        setupActionBarWithNavController(navControllerBottom, appBarConfiguration)
-        navViewBottom.setupWithNavController(navControllerBottom)*/
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkAndRequestPermissions()
@@ -176,21 +170,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             initView()
             //if (isLogEnable)
             //    initLog()
-        }
+        }*/
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    /*override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
-    }
+    }*/
 
     /*override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }*/
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+    /*override fun onNavigationItemSelected(item: MenuItem): Boolean {
         selectDrawerItem(item)
 
         return true
@@ -273,7 +267,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
 
-    }
+    }*/
 
     private fun checkAndRequestPermissions() {
 
@@ -371,7 +365,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             //return false;
         } else {
             Log.e(mTAG, "All permission are granted")
-            initView()
+            //initView()
             //initLog()
         }
         //return true;
@@ -433,10 +427,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                             } else {
                                 Log.e(mTAG, "MANAGE_EXTERNAL_STORAGE not permmited.")
                             }*/
-                            initView()
+                            //initView()
                             //initLog()
                         } else {
-                            initView()
+                            //initView()
                             //initLog()
                         }
                         // process the normal flow
@@ -525,111 +519,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .show()
     }
 
-    private fun initView() {
-
-        //show menu
+    /*private fun initView() {
 
 
-        /*if (account.isEmpty() && password.isEmpty() && username.isEmpty()) {
-
-            //set title
-            title = getString(R.string.nav_login)
-
-            //show login
-            var fragment: Fragment? = null
-            val fragmentClass: Class<*>
-            fragmentClass = LoginFragment::class.java
-
-            try {
-                fragment = fragmentClass.newInstance()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-
-            val fragmentManager = supportFragmentManager
-            //fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
-            fragmentManager.beginTransaction().replace(R.id.flContent, fragment!!).commitAllowingStateLoss()
-
-
-            navView!!.menu.getItem(0).isChecked = false //home
-            navView!!.menu.getItem(1).isChecked = false //receipt
-            navView!!.menu.getItem(2).isChecked = false //storage
-            navView!!.menu.getItem(3).isChecked = false //material
-            navView!!.menu.getItem(4).isChecked = false //outsourced
-            navView!!.menu.getItem(5).isChecked = false //return of goods
-            navView!!.menu.getItem(6).isChecked = false //property
-            navView!!.menu.getItem(7).isChecked = false //supplier
-            navView!!.menu.getItem(8).isChecked = true //login
-            navView!!.menu.getItem(9).isChecked = false //printer
-            navView!!.menu.getItem(10).isChecked = false //setting
-            navView!!.menu.getItem(11).isChecked = false //guest
-            navView!!.menu.getItem(12).isChecked = false //about
-            navView!!.menu.getItem(13).isChecked = false //logout
-
-
-        } else {
-            //show home
-            //set username
-            if (textViewUserName != null) {
-                textViewUserName!!.text = getString(R.string.nav_greeting, username)
-            } else {
-                Log.e(mTAG, "textViewUserName == null")
-            }
-
-            //set title
-            title = getString(R.string.nav_home)
-
-            //show menu
-
-
-            navView!!.menu.getItem(0).isVisible = true //home
-            navView!!.menu.getItem(1).isVisible = true //receipt
-            navView!!.menu.getItem(2).isVisible = true //storage
-            navView!!.menu.getItem(3).isVisible = true //material
-            navView!!.menu.getItem(4).isVisible = true //outsourced
-            navView!!.menu.getItem(5).isVisible = true //return of goods
-            navView!!.menu.getItem(6).isVisible = account == "0031" || account == "0133"
-            navView!!.menu.getItem(7).isVisible = true //supplier
-            navView!!.menu.getItem(8).isVisible = false //login
-            navView!!.menu.getItem(9).isVisible = true //printer
-            navView!!.menu.getItem(10).isVisible = true //setting
-            navView!!.menu.getItem(11).isVisible = true //guest
-            navView!!.menu.getItem(12).isVisible = true //about
-            navView!!.menu.getItem(13).isVisible = true //logout
-
-
-
-            var fragment: Fragment? = null
-            val fragmentClass: Class<*>
-            fragmentClass = HomeGridFragment::class.java
-
-            try {
-                fragment = fragmentClass.newInstance()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-
-            val fragmentManager = supportFragmentManager
-            //fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
-            fragmentManager.beginTransaction().replace(R.id.flContent, fragment!!).commitAllowingStateLoss()
-
-            navView!!.menu.getItem(0).isChecked = true //home
-            navView!!.menu.getItem(1).isChecked = false //receipt
-            navView!!.menu.getItem(2).isChecked = false //storage
-            navView!!.menu.getItem(3).isChecked = false //material
-            navView!!.menu.getItem(4).isChecked = false //outsourced
-            navView!!.menu.getItem(5).isChecked = false //return of goods
-            navView!!.menu.getItem(6).isChecked = false //property
-            navView!!.menu.getItem(7).isChecked = false //supplier
-            navView!!.menu.getItem(8).isChecked = false //login
-            navView!!.menu.getItem(9).isChecked = false //printer
-            navView!!.menu.getItem(10).isChecked = false //setting
-            navView!!.menu.getItem(11).isChecked = false //guest
-            navView!!.menu.getItem(12).isChecked = false //about
-            navView!!.menu.getItem(13).isChecked = false //logout
-
-
-        }*/
 
         //set title
         title = getString(R.string.menu_home)
@@ -661,5 +553,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navView!!.menu.getItem(0).isChecked = true //home
         navView!!.menu.getItem(1).isChecked = false //gallery
         navView!!.menu.getItem(2).isChecked = false //slideshow
-    }
+    }*/
 }
