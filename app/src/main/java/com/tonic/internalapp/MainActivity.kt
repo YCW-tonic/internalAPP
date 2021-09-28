@@ -32,6 +32,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.installations.FirebaseInstallations
+import com.google.firebase.messaging.FirebaseMessaging
 import com.tonic.internalapp.databinding.ActivityMainBinding
 import com.tonic.internalapp.ui.gallery.GalleryFragment
 import com.tonic.internalapp.ui.home.HomeFragment
@@ -171,6 +173,13 @@ class MainActivity : AppCompatActivity() {
             //if (isLogEnable)
             //    initLog()
         }*/
+
+        val iidToken = FirebaseInstallations.getInstance().getToken(true)
+        Log.d(mTAG, "IID_TOKEN = $iidToken")
+
+
+
+        FirebaseMessaging.getInstance().subscribeToTopic("test")
     }
 
     /*override fun onCreateOptionsMenu(menu: Menu): Boolean {

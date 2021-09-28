@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "106447706796",
+    "project_id": "notification-demo-baaa1",
+    "storage_bucket": "notification-demo-baaa1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:106447706796:android:a7c7795089f0a033595d09",
+        "android_client_info": {
+          "package_name": "com.tonic.internalapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "106447706796-11sb2s13fms0hmalnjhu8bdutekf3qlv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tonic.internalapp",
+            "certificate_hash": "b3c1966c36ee0a70a617f634754a3f00db92c8e2"
+          }
+        },
+        {
+          "client_id": "106447706796-oguu8bkpl7vo59rli5n722rjeh8qjd55.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATavYN5BReGnjMnwwdOqgO-C812pf80gc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "106447706796-oguu8bkpl7vo59rli5n722rjeh8qjd55.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
