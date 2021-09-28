@@ -2,42 +2,29 @@ package com.tonic.internalapp
 
 import android.Manifest
 import android.app.AlertDialog
-import android.bluetooth.BluetoothAdapter
 import android.content.Context
 import android.content.DialogInterface
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.util.Log
-import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.ActionBarDrawerToggle
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.view.GravityCompat
-import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.installations.FirebaseInstallations
 import com.google.firebase.messaging.FirebaseMessaging
 import com.tonic.internalapp.databinding.ActivityMainBinding
-import com.tonic.internalapp.ui.gallery.GalleryFragment
-import com.tonic.internalapp.ui.home.HomeFragment
-import com.tonic.internalapp.ui.slideshow.SlideshowFragment
 
 //class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 class MainActivity : AppCompatActivity() {
@@ -66,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         @JvmStatic var screenWidth: Int = 0
         @JvmStatic var screenHeight: Int = 0
         @JvmStatic var isKeyBoardShow: Boolean = false
+        @JvmStatic var webViewProgressBar: ProgressBar? = null
     }
 
     @RequiresApi(Build.VERSION_CODES.R)

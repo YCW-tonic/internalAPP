@@ -1,13 +1,13 @@
-package com.tonic.internalapp.ui.slideshow
+package com.tonic.internalapp.ui.indicator
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class SlideshowViewModel : ViewModel() {
+class IndicatorViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is slideshow Fragment"
+        value = "This is gallery Fragment"
     }
     val text: LiveData<String> = _text
 }

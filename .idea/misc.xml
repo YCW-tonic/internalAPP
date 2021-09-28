@@ -17,6 +17,10 @@
         <entry key="..\:/Users/jessie.wu/AndroidStudioProjects/internalApp/app/src/main/res/layout/activity_main.xml" value="0.20425724637681159" />
         <entry key="..\:/Users/jessie.wu/AndroidStudioProjects/internalApp/app/src/main/res/layout/content_main.xml" value="0.1" />
         <entry key="..\:/Users/jessie.wu/AndroidStudioProjects/internalApp/app/src/main/res/layout/fragment_home.xml" value="0.2046875" />
+        <entry key="..\:/Users/jessie.wu/AndroidStudioProjects/internalApp/app/src/main/res/layout/fragment_indicator.xml" value="0.17864583333333334" />
+        <entry key="..\:/Users/jessie.wu/AndroidStudioProjects/internalApp/app/src/main/res/menu/activity_main_drawer.xml" value="0.17864583333333334" />
+        <entry key="..\:/Users/jessie.wu/AndroidStudioProjects/internalApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.28020833333333334" />
+        <entry key="..\:/Users/jessie.wu/AndroidStudioProjects/internalApp/app/src/main/res/xml/network_security_config.xml" value="0.22083333333333333" />
       </map>
     </option>
   </component>

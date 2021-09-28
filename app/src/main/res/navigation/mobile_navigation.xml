@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.tonic.internalapp.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:name="com.tonic.internalapp.ui.indicator.IndicatorFragment"
+        android:label="@string/menu_indicator"
+        tools:layout="@layout/fragment_indicator" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.tonic.internalapp.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:name="com.tonic.internalapp.ui.me.MeFragment"
+        android:label="@string/menu_me"
+        tools:layout="@layout/fragment_me" />
 </navigation>
