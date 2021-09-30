@@ -40,12 +40,12 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
+        /*val textView: TextView = binding.textHome
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
-        })
+        })*/
 
-        /*val webView = view.findViewById<WebView>(R.id.webviewPhone)
+        /*\val webView = view.findViewById<WebView>(R.id.webviewPhone)
         val webSettings = webView!!.settings
         webSettings.setSupportZoom(true)
         webSettings.loadWithOverviewMode = true
@@ -57,7 +57,7 @@ class HomeFragment : Fragment() {
         webView!!.webChromeClient = MyWebChromeClient()
         webView!!.webViewClient = WebClient()
         webView.loadUrl("https://www.google.com")*/
-        /*val imageList = ArrayList<SlideModel>()
+        val imageList = ArrayList<SlideModel>()
         //imageList.add(SlideModel(R.drawable.shohei_ohtani_1))
         //imageList.add(SlideModel(R.drawable.shohei_ohtani_2))
         //imageList.add(SlideModel(R.drawable.shohei_ohtani_3))
@@ -71,11 +71,11 @@ class HomeFragment : Fragment() {
         //imageList.add(SlideModel(R.drawable.tonic4))
         //imageList.add(SlideModel(R.drawable.tonic5))
 
-        val imageSlider = root.findViewById<ImageSlider>(R.id.image_slider)
+        val imageSlider = root.findViewById<ImageSlider>(R.id.image_slider_home)
         imageSlider.setImageList(imageList)
 
         imageSlider.startSliding(3000) // with new period
-        */
+
 
         return root
     }
