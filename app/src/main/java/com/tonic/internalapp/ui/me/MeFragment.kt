@@ -36,7 +36,7 @@ class MeFragment : Fragment() {
             textView.text = it
         })*/
 
-        val imageList = ArrayList<SlideModel>()
+        /*val imageList = ArrayList<SlideModel>()
         imageList.add(SlideModel(R.drawable.shohei_ohtani_1))
         imageList.add(SlideModel(R.drawable.shohei_ohtani_2))
         imageList.add(SlideModel(R.drawable.shohei_ohtani_3))
@@ -49,7 +49,7 @@ class MeFragment : Fragment() {
         imageSlider.setImageList(imageList)
 
         imageSlider.startSliding(3000) // with new period
-
+        */
         return root
     }
 

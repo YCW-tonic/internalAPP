@@ -1,12 +1,13 @@
 package com.tonic.internalapp
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.content.Context
-import android.content.DialogInterface
+import android.content.*
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
@@ -19,12 +20,17 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.installations.FirebaseInstallations
 import com.google.firebase.messaging.FirebaseMessaging
+import com.tonic.internalapp.data.Constants
 import com.tonic.internalapp.databinding.ActivityMainBinding
+import com.tonic.internalapp.ui.announcement.AnnouncementFragment
+import com.tonic.internalapp.ui.home.HomeFragment
 
 //class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 class MainActivity : AppCompatActivity() {
@@ -35,19 +41,19 @@ class MainActivity : AppCompatActivity() {
     private val requestIdMultiplePermission = 1
 
     enum class CurrentFragment {
-        HOME_FRAGMENT, GALLERY_FRAGMENT,
-        SLIDESHOW_FRAGMENT
+        HOME_FRAGMENT, INDICATOR_FRAGMENT, ME_FRAGMENT, ANNOUNCEMENT_FRAGMENT, EDIT_FRAGMENT, BALANCE_FRAGMENT
     }
 
     var currentFrag: CurrentFragment = CurrentFragment.HOME_FRAGMENT
 
-    var navView: NavigationView? = null
+
 
     private var mContext: Context? = null
 
-    private var imm: InputMethodManager? = null
 
-    private var currentSelectMenuItem: MenuItem? = null
+
+    private var mReceiver: BroadcastReceiver? = null
+    private var isRegister = false
 
     companion object {
         @JvmStatic var screenWidth: Int = 0
@@ -73,19 +79,20 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
+        /*val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
             )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
+        )*/
+
+        //setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        /*val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+        //val toolbar: Toolbar = findViewById(R.id.toolbar)
+        //setSupportActionBar(toolbar)
 
 
-
+        /*
         val displayMetrics = DisplayMetrics()
 
         //
@@ -152,12 +159,13 @@ class MainActivity : AppCompatActivity() {
         mDrawerToggle.syncState()
 
         navView!!.setNavigationItemSelectedListener(this)
+        */
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkAndRequestPermissions()
         } else {
-            initView()
+            //initView()
             //if (isLogEnable)
             //    initLog()
         }*/
@@ -168,6 +176,55 @@ class MainActivity : AppCompatActivity() {
 
 
         FirebaseMessaging.getInstance().subscribeToTopic("test")
+
+
+        val filter: IntentFilter
+        @SuppressLint("CommitPrefEdits")
+        mReceiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context, intent: Intent) {
+                if (intent.action != null) {
+                    if (intent.action!!.equals(Constants.ACTION.ACTION_LOGIN_ACTION, ignoreCase = true)) {
+                        Log.d(mTAG, "ACTION_LOGIN_ACTION")
+
+                    } else if (intent.action!!.equals(Constants.ACTION.ACTION_LOGIN_NETWORK_ERROR, ignoreCase = true)) {
+                        Log.d(mTAG, "ACTION_LOGIN_NETWORK_ERROR")
+                    } else if (intent.action!!.equals(Constants.ACTION.ACTION_LOGIN_FAILED, ignoreCase = true)) {
+                        Log.d(mTAG, "ACTION_LOGIN_FAILED")
+                    } else if (intent.action!!.equals(Constants.ACTION.ACTION_LOGIN_SUCCESS, ignoreCase = true)) {
+                        Log.d(mTAG, "ACTION_LOGIN_SUCCESS")
+                    } else if (intent.action!!.equals(Constants.ACTION.ACTION_HOME_GO_TO_ANNOUNCEMENT_ACTION, ignoreCase = true)) {
+                        Log.d(mTAG, "ACTION_HOME_GO_TO_ANNOUNCEMENT_ACTION")
+
+                        navController.navigate(R.id.nav_announcement)
+                    } else if (intent.action!!.equals(Constants.ACTION.ACTION_HOME_GO_TO_EDIT_ACTION, ignoreCase = true)) {
+                        Log.d(mTAG, "ACTION_HOME_GO_TO_EDIT_ACTION")
+
+                        navController.navigate(R.id.nav_edit)
+                    } else if (intent.action!!.equals(Constants.ACTION.ACTION_HOME_GO_TO_BALANCE_ACTION, ignoreCase = true)) {
+                        Log.d(mTAG, "ACTION_HOME_GO_TO_BALANCE_ACTION")
+
+                        navController.navigate(R.id.nav_balance)
+                    }
+                }
+            }
+        }
+
+        if (!isRegister) {
+            filter = IntentFilter()
+            //login
+            filter.addAction(Constants.ACTION.ACTION_LOGIN_ACTION)
+            filter.addAction(Constants.ACTION.ACTION_LOGIN_NETWORK_ERROR)
+            filter.addAction(Constants.ACTION.ACTION_LOGIN_SUCCESS)
+            filter.addAction(Constants.ACTION.ACTION_LOGIN_FAILED)
+            //home
+            filter.addAction(Constants.ACTION.ACTION_HOME_GO_TO_ANNOUNCEMENT_ACTION)
+            filter.addAction(Constants.ACTION.ACTION_HOME_GO_TO_EDIT_ACTION)
+            filter.addAction(Constants.ACTION.ACTION_HOME_GO_TO_BALANCE_ACTION)
+
+            mContext!!.registerReceiver(mReceiver, filter)
+            isRegister = true
+            Log.d(mTAG, "registerReceiver mReceiver")
+        }
     }
 
     /*override fun onCreateOptionsMenu(menu: Menu): Boolean {

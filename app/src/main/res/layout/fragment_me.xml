@@ -7,7 +7,7 @@
     tools:context=".ui.me.MeFragment"
     android:orientation="vertical">
 
-    <com.denzcoskun.imageslider.ImageSlider
+    <!--com.denzcoskun.imageslider.ImageSlider
         android:id="@+id/image_slider"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,7 +23,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
-    </LinearLayout>
+    </LinearLayout-->
     <!--TextView
         android:id="@+id/text_slideshow"
         android:layout_width="match_parent"

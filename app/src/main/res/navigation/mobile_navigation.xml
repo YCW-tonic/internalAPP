@@ -22,4 +22,22 @@
         android:name="com.tonic.internalapp.ui.me.MeFragment"
         android:label="@string/menu_me"
         tools:layout="@layout/fragment_me" />
+
+    <fragment
+        android:id="@+id/nav_announcement"
+        android:name="com.tonic.internalapp.ui.announcement.AnnouncementFragment"
+        android:label="@string/nav_announcement"
+        tools:layout="@layout/fragment_announcement" />
+
+    <fragment
+        android:id="@+id/nav_edit"
+        android:name="com.tonic.internalapp.ui.edit.EditFragment"
+        android:label="@string/nav_edit"
+        tools:layout="@layout/fragment_edit" />
+
+    <fragment
+        android:id="@+id/nav_balance"
+        android:name="com.tonic.internalapp.ui.balance.BalanceFragment"
+        android:label="@string/nav_balance"
+        tools:layout="@layout/fragment_balance" />
 </navigation>

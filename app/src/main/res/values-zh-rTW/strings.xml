@@ -15,4 +15,7 @@
     <string name="title_home">首頁</string>
     <string name="title_indicator">營運指標</string>
     <string name="title_me">個人</string>
+    <string name="nav_announcement">公告</string>
+    <string name="nav_edit">編輯</string>
+    <string name="nav_balance">儲值</string>
 </resources>

@@ -22,9 +22,19 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
-
+        <GridView
+            android:id="@+id/gridViewHome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:numColumns="3" />
     </LinearLayout>
 
+    <View
+        android:id="@+id/viewLineHome"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_weight="0"
+        android:background="#b7b7b7" />
     <!--TextView
         android:id="@+id/text_home"
         android:layout_width="match_parent"

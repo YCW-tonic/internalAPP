@@ -1,5 +1,7 @@
 package com.tonic.internalapp.ui.home
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,25 +17,43 @@ import com.tonic.internalapp.R
 import com.tonic.internalapp.databinding.FragmentHomeBinding
 import android.webkit.WebChromeClient
 import android.webkit.WebViewClient
+import android.widget.AdapterView
+import android.widget.GridView
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
+import com.tonic.internalapp.data.Constants
+import com.tonic.internalapp.data.HomeGridItem
+import com.tonic.internalapp.data.HomeGridItemAdapter
 
 class HomeFragment : Fragment() {
+    private val mTAG = HomeFragment::class.java.name
 
     private lateinit var homeViewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null
-
+    private var appList = ArrayList<HomeGridItem>()
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    private var homeGridContext: Context? = null
+    private var homeGridItemAdapter: HomeGridItemAdapter? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.i(mTAG, "onCreate")
+
+        homeGridContext = context
+    }
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        //val view = inflater.inflate(R.layout.fragment_home, container, false)
+
+
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
         homeViewModel =
                 ViewModelProvider(this).get(HomeViewModel::class.java)
 
@@ -76,6 +96,42 @@ class HomeFragment : Fragment() {
 
         imageSlider.startSliding(3000) // with new period
 
+        val item0 = HomeGridItem("Announcement", R.drawable.baseline_assignment_black_48, R.string.nav_announcement)
+        appList.add(item0)
+
+        val item1 = HomeGridItem("Edit", R.drawable.baseline_edit_black_48, R.string.nav_edit)
+        appList.add(item1)
+
+        val item2 = HomeGridItem("Balance", R.drawable.baseline_monetization_on_black_48, R.string.nav_balance)
+        appList.add(item2)
+
+        val gridView = root.findViewById<GridView>(R.id.gridViewHome)
+
+        homeGridItemAdapter = HomeGridItemAdapter(homeGridContext, R.layout.fragment_home_grid_item, appList)
+        //listView.setAdapter(receiptDetailItemAdapter)
+        gridView!!.adapter = homeGridItemAdapter
+
+        gridView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+            Log.d(mTAG, "click $position")
+
+            when(appList[position].getAppId()) {
+                "Announcement" -> {
+                    val showIntent = Intent()
+                    showIntent.action = Constants.ACTION.ACTION_HOME_GO_TO_ANNOUNCEMENT_ACTION
+                    homeGridContext!!.sendBroadcast(showIntent)
+                }
+                "Edit" -> {
+                    val showIntent = Intent()
+                    showIntent.action = Constants.ACTION.ACTION_HOME_GO_TO_EDIT_ACTION
+                    homeGridContext!!.sendBroadcast(showIntent)
+                }
+                "Balance" -> {
+                    val showIntent = Intent()
+                    showIntent.action = Constants.ACTION.ACTION_HOME_GO_TO_BALANCE_ACTION
+                    homeGridContext!!.sendBroadcast(showIntent)
+                }
+            }
+        }
 
         return root
     }
