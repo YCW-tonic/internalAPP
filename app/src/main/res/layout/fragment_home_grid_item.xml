@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+    <!--ImageView
         android:id="@+id/imageViewHomeGrid"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:src="@drawable/baseline_assignment_black_48"
-        android:padding="15dp"/>
+        android:padding="15dp"/-->
+    <ru.nikartm.support.ImageBadgeView
+        android:id="@+id/imageViewHomeGrid"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:src="@drawable/baseline_assignment_black_48"
+        android:padding="15dp"
+        ibv_badgeValue="100"
+        ibv_badgeTextSize="36sp"
+        ibv_fixedBadgeRadius="30dp"
+        ibv_badgeTextStyle="bold"
+        ibv_badgeTextColor="#ffffff"
+        ibv_badgeColor="#00ACC1"
+        ibv_badgeLimitValue="false"
+        app:ibv_badgePosition="bottom_right"/>
 
     <TextView
         android:id="@+id/textViewHomeGrid"
