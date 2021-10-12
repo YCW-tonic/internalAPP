@@ -14,6 +14,18 @@
         <entry key="..\:/C_Backup/richieshih/Android_Project/internalAPP/app/src/main/res/menu/activity_main_drawer.xml" value="0.20104166666666667" />
         <entry key="..\:/C_Backup/richieshih/Android_Project/internalAPP/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2046875" />
         <entry key="..\:/C_Backup/richieshih/Android_Project/internalAPP/app/src/main/res/menu/main.xml" value="0.20104166666666667" />
+        <entry key="..\:/C_Backup/richieshih/Android_Project/internalApp/app/src/main/res/layout/activity_main.xml" value="0.2046875" />
+        <entry key="..\:/C_Backup/richieshih/Android_Project/internalApp/app/src/main/res/layout/fragment_announcement.xml" value="0.20104166666666667" />
+        <entry key="..\:/C_Backup/richieshih/Android_Project/internalApp/app/src/main/res/layout/fragment_announcement_listview_item.xml" value="0.18229166666666666" />
+        <entry key="..\:/C_Backup/richieshih/Android_Project/internalApp/app/src/main/res/layout/fragment_balance.xml" value="0.20104166666666667" />
+        <entry key="..\:/C_Backup/richieshih/Android_Project/internalApp/app/src/main/res/layout/fragment_edit.xml" value="0.20104166666666667" />
+        <entry key="..\:/C_Backup/richieshih/Android_Project/internalApp/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/C_Backup/richieshih/Android_Project/internalApp/app/src/main/res/layout/fragment_home_grid_item.xml" value="0.2046875" />
+        <entry key="..\:/C_Backup/richieshih/Android_Project/internalApp/app/src/main/res/layout/fragment_indicator.xml" value="0.20104166666666667" />
+        <entry key="..\:/C_Backup/richieshih/Android_Project/internalApp/app/src/main/res/layout/fragment_me.xml" value="0.2046875" />
+        <entry key="..\:/C_Backup/richieshih/Android_Project/internalApp/app/src/main/res/layout/nav_header_main.xml" value="0.2046875" />
+        <entry key="..\:/C_Backup/richieshih/Android_Project/internalApp/app/src/main/res/menu/activity_main_drawer.xml" value="0.2046875" />
+        <entry key="..\:/C_Backup/richieshih/Android_Project/internalApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2046875" />
         <entry key="..\:/Users/jessie.wu/AndroidStudioProjects/internalApp/app/src/main/res/layout/activity_main.xml" value="0.20425724637681159" />
         <entry key="..\:/Users/jessie.wu/AndroidStudioProjects/internalApp/app/src/main/res/layout/content_main.xml" value="0.1" />
         <entry key="..\:/Users/jessie.wu/AndroidStudioProjects/internalApp/app/src/main/res/layout/fragment_home.xml" value="0.2046875" />
@@ -24,7 +36,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
