@@ -1,7 +1,9 @@
 package com.tonic.internalapp.ui.home
 
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -38,6 +40,9 @@ class HomeFragment : Fragment() {
 
     private var homeGridContext: Context? = null
     private var homeGridItemAdapter: HomeGridItemAdapter? = null
+
+    private var mReceiver: BroadcastReceiver? = null
+    private var isRegister = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -131,6 +136,32 @@ class HomeFragment : Fragment() {
                     homeGridContext!!.sendBroadcast(showIntent)
                 }
             }
+        }
+
+        val filter: IntentFilter
+
+        mReceiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context, intent: Intent) {
+                if (intent.action != null) {
+                    if (intent.action!!.equals(Constants.ACTION.ACTION_ANNOUNCEMENT_UPDATE_ACTION, ignoreCase = true)) {
+                        Log.d(mTAG, "ACTION_ANNOUNCEMENT_UPDATE_ACTION")
+
+                        var badge = item0.getBadge()
+                        badge += 1
+                        item0.setBadge(badge)
+                        homeGridItemAdapter?.notifyDataSetChanged()
+                    }
+
+                }
+            }
+        }
+
+        if (!isRegister) {
+            filter = IntentFilter()
+            filter.addAction(Constants.ACTION.ACTION_ANNOUNCEMENT_UPDATE_ACTION)
+            homeGridContext?.registerReceiver(mReceiver, filter)
+            isRegister = true
+            Log.d(mTAG, "registerReceiver mReceiver")
         }
 
         return root

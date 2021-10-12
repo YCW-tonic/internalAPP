@@ -27,6 +27,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.installations.FirebaseInstallations
 import com.google.firebase.messaging.FirebaseMessaging
+import com.tonic.internalapp.data.AnnouncementItem
 import com.tonic.internalapp.data.Constants
 import com.tonic.internalapp.databinding.ActivityMainBinding
 import com.tonic.internalapp.ui.announcement.AnnouncementFragment
@@ -60,6 +61,8 @@ class MainActivity : AppCompatActivity() {
         @JvmStatic var screenHeight: Int = 0
         @JvmStatic var isKeyBoardShow: Boolean = false
         @JvmStatic var webViewProgressBar: ProgressBar? = null
+
+        @JvmStatic var announcementItemList = ArrayList<AnnouncementItem>()
     }
 
     @RequiresApi(Build.VERSION_CODES.R)
@@ -88,6 +91,27 @@ class MainActivity : AppCompatActivity() {
         //setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        val displayMetrics = DisplayMetrics()
+
+        //
+        //mContext!!.display!!.getMetrics(displayMetrics)
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.M)
+        {
+            windowManager.defaultDisplay.getMetrics(displayMetrics)
+
+            screenHeight = displayMetrics.heightPixels
+            screenWidth = displayMetrics.widthPixels
+        } else if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M && Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
+            mContext!!.display!!.getRealMetrics(displayMetrics)
+
+            screenHeight = displayMetrics.heightPixels
+            screenWidth = displayMetrics.widthPixels
+        } else { //Android 11
+            //mContext!!.display!!.getMetrics(displayMetrics)
+            screenHeight = windowManager.currentWindowMetrics.bounds.height()
+            screenWidth = windowManager.currentWindowMetrics.bounds.width()
+
+        }
         //val toolbar: Toolbar = findViewById(R.id.toolbar)
         //setSupportActionBar(toolbar)
 

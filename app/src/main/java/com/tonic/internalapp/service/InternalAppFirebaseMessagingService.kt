@@ -4,6 +4,7 @@ import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.util.Log
@@ -11,7 +12,10 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.tonic.internalapp.MainActivity.Companion.announcementItemList
 import com.tonic.internalapp.R
+import com.tonic.internalapp.data.AnnouncementItem
+import com.tonic.internalapp.data.Constants
 
 class InternalAppFirebaseMessagingService : FirebaseMessagingService(){
     private val mTAG = InternalAppFirebaseMessagingService::class.java.name
@@ -58,5 +62,12 @@ class InternalAppFirebaseMessagingService : FirebaseMessagingService(){
 
         notificationManager.notify(1000, notificationBuilder.build())
 
+        val announcementItem = AnnouncementItem(remoteMessage.notification!!.title as String, remoteMessage.notification!!.body as String)
+        announcementItemList.add(announcementItem)
+
+
+        val backIntent = Intent()
+        backIntent.action = Constants.ACTION.ACTION_ANNOUNCEMENT_UPDATE_ACTION
+        this.sendBroadcast(backIntent)
     }
 }

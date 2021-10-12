@@ -4,6 +4,7 @@ class HomeGridItem(appId: String, imgId: Int, stringId: Int) {
     private var appId: String = ""
     private var imgId: Int = 0
     private var stringId: Int = 0
+    private var badge: Int = 0
 
     init {
         this.appId = appId
@@ -22,5 +23,15 @@ class HomeGridItem(appId: String, imgId: Int, stringId: Int) {
     fun getStringId(): Int {
         return stringId
     }
+
+    fun getBadge(): Int {
+        return badge
+    }
+
+    fun setBadge(badge: Int) {
+        this.badge = badge
+    }
+
+
 
 }

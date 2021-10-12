@@ -11,6 +11,8 @@ class Constants {
             const val ACTION_HOME_GO_TO_ANNOUNCEMENT_ACTION: String = "com.tonic.internal.HomeGoToAnnouncementAction"
             const val ACTION_HOME_GO_TO_EDIT_ACTION: String = "com.tonic.internal.HomeGoToEditAction"
             const val ACTION_HOME_GO_TO_BALANCE_ACTION: String = "com.tonic.internal.HomeGoToBalanceAction"
+            //Announcement
+            const val ACTION_ANNOUNCEMENT_UPDATE_ACTION: String = "com.tonic.internal.AnnouncementUpdateAction"
         }
     }
 }

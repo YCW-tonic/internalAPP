@@ -67,7 +67,7 @@ class HomeGridItemAdapter(context: Context?, resource: Int, objects: ArrayList<H
         //if (receiptDetailItem != null) {
         holder.icon.setImageResource(homeGridItem.getImgId())
         if (position == 0) {
-            holder.icon.badgeValue = 27
+            holder.icon.badgeValue = homeGridItem.getBadge()
             holder.icon.badgePosition = BadgePosition.BOTTOM_RIGHT
             holder.icon.badgeTextSize = 24f
             holder.icon.setBadgePadding(10)
